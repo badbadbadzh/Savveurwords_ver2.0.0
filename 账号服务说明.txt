@@ -1,0 +1,12 @@
+拯词账号服务说明
+
+本文件夹里的 auth-service.cjs 是无依赖 Node 账号服务。
+打开拯词.cmd 会自动启动它，本机地址是 http://127.0.0.1:8787。
+
+要让账号真正跨电脑同步：
+1. 把 auth-service.cjs 部署到你自己的 HTTPS Node 主机。
+2. 设置 SAVVEUR_AUTH_HOST、SAVVEUR_AUTH_PORT、SAVVEUR_AUTH_DATA。
+3. 设置 SAVVEUR_AUTH_ORIGINS，只填拯词页面的完整来源，例如 https://words.example.com。
+4. 第一次访问拯词页面时，在地址后加 ?auth=https://你的账号服务地址。
+
+密码使用 scrypt 哈希，服务只保存令牌哈希。生产环境请使用 HTTPS、限制主机访问，并定期备份 auth-data.json。
